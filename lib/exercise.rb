@@ -3,7 +3,7 @@ require "./lib/customer"
 require "./lib/item"
 require "./lib/orderitem"
 require "./lib/order"
-
+require "awesome_print"
 
 # p Item.where("name LIKE 'boot%'")
 
@@ -40,4 +40,24 @@ require "./lib/order"
 # p Customer.all.where(:state => "Colorado",:city => "Rigobertoside")
 
 # p Customer.where(state:["Virgina","Ohio"])
+#
+# item = Item.find(3)
+# item.name = "board01"
+# item.save
+# p Item.where(name:"board01")
+
+# p Item.create(name: "Kayab", description:"one person kayak")
+
+# item = Item.find(10)
+# item.destroy
+
+# ap Order.select(:customer_id,:amount).group(:customer_id).order(:customer_id).sum(:amount)
+
+# p Order.joins(:customer)
+
+# ap Customer.joins(:orders).select("orders.id", "name", "amount")
+
+butts = Customer.joins(:orders).select("customers.id","name","amount")
+ap butts.group("customers.name").order("customers.name").sum(:amount)
+
 
